@@ -12,6 +12,7 @@ const number = Math.trunc(Math.random() * 20);
 
 document.querySelector(".number").textContent = number;
 
+// Decrease the score by 1 for each wrong guess
 const scoreAdjust = () => {
   userScore--;
   scoreBox.textContent = userScore;
@@ -42,5 +43,10 @@ document.querySelector(".check").addEventListener("click", () => {
   if (userInput < number) {
     messageBox.textContent = "Guessed too low!";
     scoreAdjust();
+  }
+
+  // Check if the score is 0
+  if (userScore <= 0) {
+    messageBox.textContent = "You lost the game!";
   }
 });
