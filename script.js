@@ -4,13 +4,15 @@
 const messageBox = document.querySelector(".message");
 const guessBox = document.querySelector(".guess");
 const scoreBox = document.querySelector(".score");
+const randomNumberBox = document.querySelector('.number')
+const body = document.querySelector('body')
 
 let userScore = 20;
 
 // Generate a random number (1 - 20)
-const number = Math.trunc(Math.random() * 20);
+const number = Math.trunc(Math.random() * 20) + 1;
 
-document.querySelector(".number").textContent = number;
+randomNumberBox.textContent = number;
 
 // Decrease the score by 1 for each wrong guess
 const scoreAdjust = () => {
@@ -31,6 +33,11 @@ document.querySelector(".check").addEventListener("click", () => {
   // Check if the user guessed the right number
   if (userInput === number) {
     messageBox.textContent = "You guessed the number!";
+
+    // Change the background color and increase randomNumberBox width
+    // NOTE: Adds the styling inline, does not change the CSS file
+    body.style.backgroundColor = '#60b347'
+    randomNumberBox.style.width = '30rem'
   }
 
   // Check if the user guessed too high
@@ -45,7 +52,7 @@ document.querySelector(".check").addEventListener("click", () => {
     scoreAdjust();
   }
 
-  // Check if the score is 0
+  // Check if the user lost (score = 0)
   if (userScore <= 0) {
     messageBox.textContent = "You lost the game!";
   }
