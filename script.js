@@ -28,4 +28,9 @@ document.querySelector(".check").addEventListener("click", () => {
   if (userInput > number) {
     messageBox.textContent = "Guessed too high!";
   }
+
+  // Check if the user guessed too low
+  if (userInput < number) {
+    messageBox.textContent = "Guessed too low!";
+  }
 });
