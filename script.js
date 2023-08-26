@@ -6,8 +6,10 @@ const guessBox = document.querySelector(".guess");
 const scoreBox = document.querySelector(".score");
 const randomNumberBox = document.querySelector(".number");
 const body = document.querySelector("body");
+const highscoreBox = document.querySelector(".highscore");
 
 let userScore = 20;
+let userHighScore = 0;
 
 // Generate a random number (1 - 20)
 let number = Math.trunc(Math.random() * 20) + 1;
@@ -37,6 +39,12 @@ document.querySelector(".check").addEventListener("click", () => {
     body.style.backgroundColor = "#60b347";
     randomNumberBox.style.width = "30rem";
     randomNumberBox.textContent = number;
+
+    // If the high score is a new high score, set the high score
+    if (userScore > userHighScore) {
+      userHighScore = userScore;
+      highscoreBox.textContent = userHighScore;
+    }
   }
 
   // Check if the user guessed too high
