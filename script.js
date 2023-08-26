@@ -3,11 +3,19 @@
 // DOM Elements
 const messageBox = document.querySelector(".message");
 const guessBox = document.querySelector(".guess");
+const scoreBox = document.querySelector(".score");
+
+let userScore = 20;
 
 // Generate a random number (1 - 20)
 const number = Math.trunc(Math.random() * 20);
 
 document.querySelector(".number").textContent = number;
+
+const scoreAdjust = () => {
+  userScore--;
+  scoreBox.textContent = userScore;
+};
 
 // Check if the guessed number is the same as the random number generated
 document.querySelector(".check").addEventListener("click", () => {
@@ -27,10 +35,12 @@ document.querySelector(".check").addEventListener("click", () => {
   // Check if the user guessed too high
   if (userInput > number) {
     messageBox.textContent = "Guessed too high!";
+    scoreAdjust();
   }
 
   // Check if the user guessed too low
   if (userInput < number) {
     messageBox.textContent = "Guessed too low!";
+    scoreAdjust();
   }
 });
